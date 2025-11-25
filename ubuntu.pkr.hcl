@@ -24,8 +24,15 @@ source "amazon-ebs" "ubuntu" {
 }
 
 build {
-  name    = "learn-packer"
+  name = "ubuntu-22.04-build"
   sources = [
     "source.amazon-ebs.ubuntu"
   ]
+
+  provisioner "shell" {
+    inline = [
+      "sudo apt update",
+      "sudo apt install -y curl"
+    ]
+  }
 }
