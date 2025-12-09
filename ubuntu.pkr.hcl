@@ -8,8 +8,12 @@ packer {
 }
 
 source "amazon-ebs" "ubuntu" {
+  assume_role {
+    role_arn = "arn:aws:iam::037490752993:role/packer-build-role"
+  }
+
   ami_name      = "packer-ubuntu-22.04"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   region        = "eu-west-2"
   source_ami_filter {
     filters = {
